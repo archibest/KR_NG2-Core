@@ -1,0 +1,25 @@
+name: KR Mirror Sync
+
+on:
+  push:
+    paths:
+      - 'krpkg/**'
+      - 'manifest.json'
+      - 'version_log.md'
+      - 'kr_soul.py'
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+
+      - name: Verify KR Signature
+        run: |
+          echo "Verifying KR signature..."
+          python3 kr_soul.py --verify-signature
+
+      - name: Mirror Sync Placeholder
+        run: |
+          echo "Mirroring to Colab or Drive will occur here."
